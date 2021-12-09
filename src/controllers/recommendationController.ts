@@ -64,7 +64,7 @@ export async function getRandomRecommendations(req: Request, res: Response) {
       await recommendationService.getRandomRecommendation();
     res.send(recommendations);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.sendStatus(500);
   }
 }

@@ -12,7 +12,14 @@ export async function create(name: string, youtubeLink: string, score: number) {
   );
 }
 
-export async function findById(id: number) {
+interface Recommendation {
+  id: number;
+  name: string;
+  link: string;
+  score: number;
+}
+
+export async function findById(id: number): Promise<Recommendation> {
   const result = await connection.query(
     `
     SELECT * FROM recommendations WHERE id = $1
@@ -45,9 +52,9 @@ export async function findRecommendations(
   minScore: number,
   maxScore: number = Infinity,
   orderBy: string = ""
-) {
-  let where = "";
-  let params = [minScore];
+): Promise<Recommendation[]> {
+  let where: string = "";
+  let params: number[] = [minScore];
 
   if (maxScore === Infinity) {
     where = "score >= $1";

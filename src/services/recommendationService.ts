@@ -3,7 +3,7 @@ import getYouTubeID from "get-youtube-id";
 import * as recommendationRepository from "../repositories/recommendationRepository";
 
 export async function saveRecommendation(name: string, youtubeLink: string) {
-  const youtubeId = getYouTubeID(youtubeLink);
+  const youtubeId: string = getYouTubeID(youtubeLink);
 
   if (youtubeId === null) {
     return null;
@@ -27,7 +27,7 @@ export async function downvoteRecommendation(id: number) {
 }
 
 export async function getRandomRecommendation() {
-  const random = Math.random();
+  const random: number = Math.random();
 
   let recommendations;
   const orderBy = "RANDOM()";
