@@ -1,5 +1,5 @@
 import connection from "../database";
-
+import Recommendation from "../protocols/Recommendation";
 export async function create(name: string, youtubeLink: string, score: number) {
   await connection.query(
     `
@@ -10,13 +10,6 @@ export async function create(name: string, youtubeLink: string, score: number) {
   `,
     [name, youtubeLink, score]
   );
-}
-
-interface Recommendation {
-  id: number;
-  name: string;
-  link: string;
-  score: number;
 }
 
 export async function findById(id: number): Promise<Recommendation> {

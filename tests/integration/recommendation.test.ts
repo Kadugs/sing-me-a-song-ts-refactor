@@ -60,7 +60,7 @@ describe("POST /recommendation/:id/upvote", () => {
 
   it("upvotes an existent recommendation", async () => {
     const recommendation = await createRecommendation(0);
-    const id = recommendation.rows[0].id;
+    const { id } = recommendation;
 
     await supertest(app).post(`/recommendations/${id}/upvote`).send();
 
